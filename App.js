@@ -1,3 +1,68 @@
+/* 
+No SQL - Mongo.DB
+O banco de dados clássico:
+-apresenta um problema de consumo de memória desnecessário  
+-Upgrade Horizontal
+-Otimização
+
+Dai vem o Mongo.DB:
+-Ele ocupa o espaço que está sendo utilizado
+-Upgrade Vertical 
+-Dados mais pesados são salvos como objetos, como imagens, vídeos, pdf
+-Arquitetura Descentralizada
+
+Tecnologias utilizadas:
+-Mongo.DB??
+-JavaScript
+-Expo.Snack
+-ExpoGo
+
+Não funciona pelo Expo.Snack, melhor tentar pelo vs-code, a princípio ideal é configurar o ambiente,
+mas dá vários erros
+
+import React, { useState } from 'react';
+import { SafeAreaView, Text, TextInput, Button, View, StyleSheet, Alert } from 'react-native';
+import { JSHash, CONSTANTS } from 'react-native-hash';
+
+export default function App() {
+  const [cadastro, setCadastro] = useState('');
+  const [login, setLogin] = useState('');
+  const [hashCadastro, setHashCadastro] = useState('');
+  const [hashLogin, setHashLogin] = useState('');
+
+  const gerarHashCadastro = () => {
+    JSHash(cadastro, CONSTANTS.HashAlgorithms.sha256)
+      .then(hash => setHashCadastro(hash));
+  };
+
+  const gerarHashLogin = () => {
+    JSHash(login, CONSTANTS.HashAlgorithms.sha256)
+      .then(hash => setHashLogin(hash));
+  };
+
+  return (
+    <SafeAreaView>
+      <Text>Cadastro:</Text>
+      <TextInput
+        value={cadastro}
+        onChangeText={setCadastro}
+      />
+      <Button title="teste" onPress={gerarHashCadastro} />
+      <Text>{hashCadastro}</Text>
+
+      <Text>Login:</Text>
+      <TextInput
+        value={login}
+        onChangeText={setLogin}
+      />
+      <Button title="teste" onPress={gerarHashLogin} />
+      <Text>{hashLogin}</Text>
+    </SafeAreaView>
+  );
+}
+
+*/
+
 import { useState } from 'react';
 import { View, Button, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
