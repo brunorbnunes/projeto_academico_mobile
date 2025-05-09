@@ -1,4 +1,5 @@
 /* 
+02/05/2025
 No SQL - Mongo.DB
 O banco de dados clássico:
 -apresenta um problema de consumo de memória desnecessário  
@@ -60,6 +61,25 @@ export default function App() {
     </SafeAreaView>
   );
 }
+
+09/05/2025
+
+Relatório:
+1.1 - Relata a existência da parte interessada.
+1.2 - Relata a problemática encontrada e como o problema vai ser solucionado.
+1.4 - Relata as tecnologias utilizadas para resolver a problemática.
+-> 1.5 - Referencial teórico, escrever sobre a matéria e como ela contribui para o desenvolvimento do projeto, com referências a autores, por questões de referência e bom usar o google academy.
+2.1 - Tabela do que foi feito, um cronograma do projeto.
+2.2 - Forma de comunicação com a parte interessada, mas focar essencialmente na evidência, explicar sobre a dinâmica, da competição.
+2.3 - Explicar a contribuição de cada aluno no projeto.
+2.4 - Os objetivos previstos, que basicamente é o funcionamento do app
+2.5 - Descrever softwares e bibliotecas utilizadas. 
+-> 2.6 - Link do github e um desenho de como as páginas interagem entre si
+3.1 - Opinião do grupo sobre a execução do projeto.
+3.1.1 - Reação da parte interessada
+3.1.2 - Experiência vivida durante o projeto
+3.1.3 - Experiência vivenciada no projeto
+-> 3.2.3 - Resultados e discussões, aqui onde entram as prints do projeto.
 
 */
 
