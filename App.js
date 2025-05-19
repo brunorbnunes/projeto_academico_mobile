@@ -99,7 +99,7 @@ const Login = ({ navigation, route }) => {
   const[password, setPassword] = useState('');
   return (
     <View>
-      <text>E-mail: </text>
+      <Text>E-mail: </Text>
       <TextInput
         keyboardType="email-address"
         value={email}
@@ -171,22 +171,6 @@ const Contatos = () => {
 const Fotos = () => {
   return <Text>Fotos</Text>;
 };
-
-/* Elementos visuais (Kayky) - Logomarca; textos; títulos(label) Elementos de interação (Bruno) - botão de ação; menu de navegação */
-const consulta_extrato = () => {
-  return<text>consulta de extrato</text>
-}
-
-/* Elementos visuais (Kayky) - Logomarca; textos; títulos(label) Elementos de interação (Bruno/Isabelle) - botão de ação; menu de navegação; input de dados; acesso à câmera do dispositivo móvel. */
-const Pagamento_contas = () => {
-  return<text>Pagamento de contas</text>
-}
-
-/* Elementos visuais (Kayky) - Logomarca; textos; títulos(label); listagem de texto Elementos de interação (Bruno/Isabelle) - botão de ação; menu de navegação; input de dados; seleção de dados. */
-const transferencia_bancaria = () => {
-  return<text>Transferência Bancária</text>
-}
-
 
 const App = () => {
   const [EstaLogado, setLogado] = useState(false);
