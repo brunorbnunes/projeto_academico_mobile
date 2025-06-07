@@ -45,7 +45,7 @@ const Login = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button onPress={() => route.params.funcLogar(true)} title="Logar" />
+        <Button onPress={() => { if (email.trim() !== '' && password.trim() !== '') { route.params.funcLogar(true) }}} title="Logar" />
         <View style={{ width: 20 }} /> {/* Espaço entre os botões */}
         <Button onPress={() => navigation.navigate('Registrar')} title="Registrar" />
       </View>
@@ -54,7 +54,52 @@ const Login = ({ navigation, route }) => {
 };
 
 const Registrar = () => {
-  return <Text>Registrar</Text>;
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
+  return (
+    <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
+      <View style={styles.registroContainer}>
+        <View style={styles.inputGroup}>
+          <Text style={styles.labelText}>Nome de Usuário:</Text>
+          <TextInput
+            style={styles.inputBox}
+            value={username}
+            onChangeText={text => setUsername(text)}
+            placeholder="Insira seu nome de usuário"
+          />
+        </View>
+
+        <View style={styles.inputGroup}>
+          <Text style={styles.labelText}>E-mail:</Text>
+          <TextInput
+            style={styles.inputBox}
+            keyboardType="email-address"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            placeholder="Insira seu e-mail"
+          />
+        </View>
+
+        <View style={styles.inputGroup}>
+          <Text style={styles.labelText}>Senha:</Text>
+          <TextInput
+            style={styles.inputBox}
+            secureTextEntry={true}
+            value={password}
+            onChangeText={text => setPassword(text)}
+            placeholder="Insira sua senha"
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button title="Registrar" onPress={() => {}} />
+        </View>
+      </View>
+    </ImageBackground>
+  );
 };
 
 const Avisos = () => {
@@ -190,6 +235,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
+  },
+  registroContainer: {
+  flex: 1,
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+  width: '100%',
+  paddingHorizontal: 20,
+  paddingTop: 70,
   },
 });
 
