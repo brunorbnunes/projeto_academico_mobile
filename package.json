@@ -27,7 +27,8 @@
     "react": "19.0.0",
     "react-native": "0.79.2",
     "react-native-reanimated": "~3.17.4",
-    "react-native-safe-area-context": "5.4.0"
+    "react-native-safe-area-context": "5.4.0",
+    "expo-screen-orientation": "~8.1.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
