@@ -5,6 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Adicione isso
+import './firebaseConfig'; // Certifique-se de importar sua configuração do Firebase
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,11 +106,19 @@ const Registrar = () => {
 };
 
 const Avisos = () => {
-  return <Text>Avisos</Text>;
+  return (
+  <View>
+  <Text>Avisos</Text>
+  </View>
+  );
 };
 
 const Perfil = () => {
-  return <Text>Perfil</Text>;
+  return (
+  <View>
+  <Text>Perfil</Text>
+  </View>
+  );
 };
 
 const Home = ({ navigation, route }) => {
@@ -135,15 +146,27 @@ const Home_stack = ({ navigation, route }) => {
 };
 
 const Config = () => {
-  return <Text>Config</Text>;
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Config</Text>
+    </View>
+  );
 };
 
 const Contatos = () => {
-  return <Text>Contatos</Text>;
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Contatos</Text>
+    </View>
+  );
 };
 
 const Fotos = () => {
-  return <Text>Fotos</Text>;
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Fotos</Text>
+    </View>
+  );
 };
 
 const App = () => {
