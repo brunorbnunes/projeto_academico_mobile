@@ -1,9 +1,10 @@
-/*import { useState } from 'react';
+import { useState } from 'react';
 import { View, Button, Text, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import {auth} from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ const Home = ({ navigation, route }) => {
 };
 
 /* Logomarca da instituição; textos; títulos(label); banner publicitário rotativo - Kayky */
-/*const Home_stack = ({ navigation, route }) => {
+const Home_stack = ({ navigation, route }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -116,7 +117,7 @@ const App = () => {
   ) : (
 
   /* Elementos visuais (Kayky) - Logomarca da instituição; banner publicitário rotativo; canais de comunicação Elementos Interativos (Isabelle) - input de dados; botão de ação */
-  /*  <NavigationContainer>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="Sistema para curso de alfabetização de jovens e adultos"
@@ -129,41 +130,4 @@ const App = () => {
   );
 };
 
-export default App;*/
-
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { getAuth, onAuthStateChanged } from '@react-native-firebase/auth';
-
-function App() {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state changes
-  function handleAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    const subscriber = onAuthStateChanged(getAuth(), handleAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  if (!user) {
-    return (
-      <View>
-        <Text>Login</Text>
-      </View>
-    );
-  }
-
-  return (
-    <View>
-      <Text>Welcome {user.email}</Text>
-    </View>
-  );
-}
+export default App;
