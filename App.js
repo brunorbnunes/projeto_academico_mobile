@@ -60,8 +60,6 @@ const Registrar = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
       <View style={styles.registroContainer}>
