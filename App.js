@@ -5,9 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Adicione isso
-import './firebaseConfig'; // Certifique-se de importar sua configuração do Firebase
-
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import './firebaseConfig';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,7 +27,7 @@ const Login = ({ navigation, route }) => {
         <Image source={require('./assets/estacio-logo-retangular.png')} style={styles.logo} />
       </View>
       <View style={styles.inputGroup}>
-        <Text style={styles.labelText}>E-mail: </Text>
+        <Text style={styles.labelText}>E-mail:</Text>
         <TextInput  
           style={styles.inputBox}
           keyboardType="email-address"
@@ -38,7 +37,7 @@ const Login = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.inputGroup}>
-        <Text style={styles.labelText}>Senha: </Text>
+        <Text style={styles.labelText}>Senha:</Text>
         <TextInput
           style={styles.inputBox}
           secureTextEntry={true}
@@ -48,8 +47,8 @@ const Login = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button onPress={() => { if (email.trim() !== '' && password.trim() !== '') { route.params.funcLogar(true) }}} title="Logar" />
-        <View style={{ width: 20 }} /> {/* Espaço entre os botões */}
+        <Button onPress={() => { if (email.trim() !== '' && password.trim() !== '') { route.params.funcLogar(true); }}} title="Logar" />
+        <View style={{ width: 20 }} />
         <Button onPress={() => navigation.navigate('Registrar')} title="Registrar" />
       </View>
     </ImageBackground>
@@ -60,6 +59,7 @@ const Registrar = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
       <View style={styles.registroContainer}>
@@ -72,7 +72,6 @@ const Registrar = () => {
             placeholder="Insira seu nome de usuário"
           />
         </View>
-
         <View style={styles.inputGroup}>
           <Text style={styles.labelText}>E-mail:</Text>
           <TextInput
@@ -83,7 +82,6 @@ const Registrar = () => {
             placeholder="Insira seu e-mail"
           />
         </View>
-
         <View style={styles.inputGroup}>
           <Text style={styles.labelText}>Senha:</Text>
           <TextInput
@@ -94,7 +92,6 @@ const Registrar = () => {
             placeholder="Insira sua senha"
           />
         </View>
-
         <View style={styles.buttonContainer}>
           <Button title="Registrar" onPress={() => {}} />
         </View>
@@ -103,69 +100,54 @@ const Registrar = () => {
   );
 };
 
-const Avisos = () => {
-  return (
+const Avisos = () => (
   <View>
-  <Text>Avisos</Text>
+    <Text>Avisos</Text>
   </View>
-  );
-};
+);
 
-const Perfil = () => {
-  return (
+const Perfil = () => (
   <View>
-  <Text>Perfil</Text>
+    <Text>Perfil</Text>
   </View>
-  );
-};
+);
 
-const Home = ({ navigation, route }) => {
-  return (
-    <View>
-      <Button onPress={() => route.params.funcLogar(false)} title="Deslogar" />
-      <Button onPress={() => navigation.navigate('Perfil')} title="Perfil" />
-    </View>
-  );
-};
+const Home = ({ navigation, route }) => (
+  <View>
+    <Button onPress={() => route.params.funcLogar(false)} title="Deslogar" />
+    <Button onPress={() => navigation.navigate('Perfil')} title="Perfil" />
+  </View>
+);
 
-/* Logomarca da instituição; textos; títulos(label); banner publicitário rotativo - Kayky */
-const Home_stack = ({ navigation, route }) => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        options={{ headerShown: false }}
-        component={Home}
-        initialParams={{ funcLogar: route.params.funcLogar }}
-      />
-      <Stack.Screen name="Perfil" component={Perfil} />
-    </Stack.Navigator>
-  );
-};
+const Home_stack = ({ navigation, route }) => (
+  <Stack.Navigator>
+    <Stack.Screen
+      name="Home"
+      options={{ headerShown: false }}
+      component={Home}
+      initialParams={{ funcLogar: route.params.funcLogar }}
+    />
+    <Stack.Screen name="Perfil" component={Perfil} />
+  </Stack.Navigator>
+);
 
-const Config = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Config</Text>
-    </View>
-  );
-};
+const Config = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Config</Text>
+  </View>
+);
 
-const Contatos = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Contatos</Text>
-    </View>
-  );
-};
+const Contatos = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Contatos</Text>
+  </View>
+);
 
-const Fotos = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Fotos</Text>
-    </View>
-  );
-};
+const Fotos = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Fotos</Text>
+  </View>
+);
 
 const App = () => {
   const [EstaLogado, setLogado] = useState(false);
@@ -174,19 +156,17 @@ const App = () => {
       <Drawer.Navigator>
         <Drawer.Screen
           name="Home"
-          component={() => {
-            return (
-              <Tab.Navigator>
-                <Tab.Screen
-                  name="Home_tab"
-                  options={{ headerShown: false }}
-                  component={Home_stack}
-                  initialParams={{ funcLogar: setLogado }}
-                />
-                <Tab.Screen name="Avisos" component={Avisos} />
-              </Tab.Navigator>
-            );
-          }}
+          component={() => (
+            <Tab.Navigator>
+              <Tab.Screen
+                name="Home_tab"
+                options={{ headerShown: false }}
+                component={Home_stack}
+                initialParams={{ funcLogar: setLogado }}
+              />
+              <Tab.Screen name="Avisos" component={Avisos} />
+            </Tab.Navigator>
+          )}
         />
         <Drawer.Screen name="Configurações" component={Config} />
         <Drawer.Screen name="Contatos" component={Contatos} />
@@ -194,8 +174,6 @@ const App = () => {
       </Drawer.Navigator>
     </NavigationContainer>
   ) : (
-
-  /* Elementos visuais (Kayky) - Logomarca da instituição; banner publicitário rotativo; canais de comunicação Elementos Interativos (Isabelle) - input de dados; botão de ação */
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -223,7 +201,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1,
   },
-
   background: {
     flex: 1,
     justifyContent: 'center',
@@ -248,8 +225,8 @@ const styles = StyleSheet.create({
   },
   labelText: {
     alignSelf: 'flex-start',
-    marginBottom: 5,      
-    color: '#FFFFFF',          
+    marginBottom: 5,
+    color: '#FFFFFF',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -258,14 +235,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   registroContainer: {
-  flex: 1,
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  width: '100%',
-  paddingHorizontal: 20,
-  paddingTop: 70,
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingTop: 70,
   },
 });
-
 
 export default App;
