@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import './firebaseConfig';
 
 const Stack = createNativeStackNavigator();
@@ -72,10 +72,25 @@ const Login = ({ navigation, route }) => {
 };
 
 /* Primeiro Registrar e salvar a informação no Firebase, depois logar com o email e senha */
-const Registrar = () => {
+const Registrar = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const Registro = async () => {
+    if (username.trim() === '' || email.trim() === '' || password.trim() === '') {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+    const auth = getAuth();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert('Registro realizado com sucesso!');
+      navigation.navigate('Login');
+    } catch (error) {
+      alert('Erro ao registrar. Tente novamente.', error.message);
+    }
+  };
 
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
@@ -110,7 +125,7 @@ const Registrar = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title="Registrar" onPress={() => {}} />
+          <Button title="Registrar" onPress={Registro} />
         </View>
       </View>
     </ImageBackground>
