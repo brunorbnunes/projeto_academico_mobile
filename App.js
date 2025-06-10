@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 
-/* Primeiramente deve-se registrar e confirmado o registro poder fazer login */
+/* Confirmado o registro poder fazer login */
 const Login = ({ navigation, route }) => {
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
@@ -100,7 +100,7 @@ const Registrar = ({ navigation }) => {
           <TextInput
             style={styles.inputBox}
             value={username}
-            onChangeText={text => setUsername(text)}
+            onChangeText={setUsername}
             placeholder="Insira seu nome de usuário"
           />
         </View>
@@ -110,7 +110,7 @@ const Registrar = ({ navigation }) => {
             style={styles.inputBox}
             keyboardType="email-address"
             value={email}
-            onChangeText={text => setEmail(text)}
+            onChangeText={setEmail}
             placeholder="Insira seu e-mail"
           />
         </View>
@@ -120,7 +120,7 @@ const Registrar = ({ navigation }) => {
             style={styles.inputBox}
             secureTextEntry={true}
             value={password}
-            onChangeText={text => setPassword(text)}
+            onChangeText={setPassword}
             placeholder="Insira sua senha"
           />
         </View>
