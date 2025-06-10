@@ -12,6 +12,8 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
+
+/* Primeiramente deve-se registrar e confirmado o registro poder fazer login */
 const Login = ({ navigation, route }) => {
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
@@ -21,6 +23,20 @@ const Login = ({ navigation, route }) => {
   }, []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    if (email.trim() === '' || password.trim() === '') {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+    const auth = getAuth();
+    try{
+      await signInWithEmailAndPassword(auth, email, password);
+      route.params.funcLogar(true);
+    } catch (error) {
+      alert('Erro ao fazer login. Verifique suas credenciais.', error.message);
+    }
+  };
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
       <View style={styles.logoContainer}>
@@ -55,6 +71,7 @@ const Login = ({ navigation, route }) => {
   );
 };
 
+/* Primeiro Registrar e salvar a informação no Firebase, depois logar com o email e senha */
 const Registrar = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
