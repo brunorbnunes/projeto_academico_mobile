@@ -14,13 +14,9 @@
     },
     "ios": {
       "supportsTablet": true,
-      "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.mobile.projetoacademicomobile",
       "buildNumber": "1"
     },
     "android": {
-      "googleServicesFile": "./google-services.json",
-      "package": "com.mobile.projetoacademicomobile",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -31,13 +27,7 @@
     "web": {
       "favicon": "./assets/favicon.png",
     
-    "plugins": [
-      "@react-native-firebase/app",
-      "@react-native-firebase/auth",
-      "@react-native-firebase/database",
-      "@react-native-firebase/firestore",
-      "@react-native-firebase/crashlytics",
-      [
+    "plugins":[
         "expo-build-properties",
         {
           "ios": {
@@ -45,8 +35,6 @@
           }
         }
       ]
-    ]
-
     }
   }
 }
