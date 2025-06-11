@@ -5,15 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import './firebaseConfig';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-
-/* Confirmado o registro poder fazer login */
 const Login = ({ navigation, route }) => {
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
@@ -23,27 +19,13 @@ const Login = ({ navigation, route }) => {
   }, []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleLogin = async () => {
-    if (email.trim() === '' || password.trim() === '') {
-      alert('Por favor, preencha todos os campos.');
-      return;
-    }
-    const auth = getAuth();
-    try{
-      await signInWithEmailAndPassword(auth, email, password);
-      route.params.funcLogar(true);
-    } catch (error) {
-      alert('Erro ao fazer login. Verifique suas credenciais.', error.message);
-    }
-  };
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
       <View style={styles.logoContainer}>
         <Image source={require('./assets/estacio-logo-retangular.png')} style={styles.logo} />
       </View>
       <View style={styles.inputGroup}>
-        <Text style={styles.labelText}>E-mail:</Text>
+        <Text style={styles.labelText}>E-mail: </Text>
         <TextInput  
           style={styles.inputBox}
           keyboardType="email-address"
@@ -53,7 +35,7 @@ const Login = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.inputGroup}>
-        <Text style={styles.labelText}>Senha:</Text>
+        <Text style={styles.labelText}>Senha: </Text>
         <TextInput
           style={styles.inputBox}
           secureTextEntry={true}
@@ -63,7 +45,7 @@ const Login = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button onPress={() => { if (email.trim() !== '' && password.trim() !== '') { route.params.funcLogar(true); }}} title="Logar" />
+        <Button onPress={() => { if (email.trim() !== '' && password.trim() !== '') { route.params.funcLogar(true) }}} title="Logar" />
         <View style={{ width: 20 }} />
         <Button onPress={() => navigation.navigate('Registrar')} title="Registrar" />
       </View>
@@ -71,27 +53,10 @@ const Login = ({ navigation, route }) => {
   );
 };
 
-/* Primeiro Registrar e salvar a informação no Firebase, depois logar com o email e senha */
-const Registrar = ({ navigation }) => {
+const Registrar = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const Registro = async () => {
-    if (username.trim() === '' || email.trim() === '' || password.trim() === '') {
-      alert('Por favor, preencha todos os campos.');
-      return;
-    }
-    const auth = getAuth();
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert('Registro realizado com sucesso!');
-      navigation.navigate('Login');
-    } catch (error) {
-      alert('Erro ao registrar. Tente novamente.', error.message);
-    }
-  };
-
   return (
     <ImageBackground source={require('./assets/fundologin.jpg')} style={styles.background} resizeMode="cover">
       <View style={styles.registroContainer}>
@@ -100,7 +65,7 @@ const Registrar = ({ navigation }) => {
           <TextInput
             style={styles.inputBox}
             value={username}
-            onChangeText={setUsername}
+            onChangeText={text => setUsername(text)}
             placeholder="Insira seu nome de usuário"
           />
         </View>
@@ -110,7 +75,7 @@ const Registrar = ({ navigation }) => {
             style={styles.inputBox}
             keyboardType="email-address"
             value={email}
-            onChangeText={setEmail}
+            onChangeText={text => setEmail(text)}
             placeholder="Insira seu e-mail"
           />
         </View>
@@ -120,12 +85,12 @@ const Registrar = ({ navigation }) => {
             style={styles.inputBox}
             secureTextEntry={true}
             value={password}
-            onChangeText={setPassword}
+            onChangeText={text => setPassword(text)}
             placeholder="Insira sua senha"
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title="Registrar" onPress={Registro} />
+          <Button title="Registrar" onPress={() => {}} />
         </View>
       </View>
     </ImageBackground>
