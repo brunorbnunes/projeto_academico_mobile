@@ -26,8 +26,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-    
-    "plugins":[
+      "plugins": [
         "expo-build-properties",
         {
           "ios": {
@@ -35,6 +34,9 @@
           }
         }
       ]
-    }
+    },
+    "plugins": [
+      "expo-sqlite"
+    ]
   }
 }
